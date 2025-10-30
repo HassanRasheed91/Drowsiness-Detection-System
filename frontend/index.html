@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drowsiness Detection System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-eye"></i>
+                <h1>Drowsiness Detection System</h1>
+            </div>
+            <p class="subtitle">Real-time monitoring for driver safety</p>
+        </header>
+
+        <main class="main-content">
+            <div class="video-section">
+                <div class="video-container">
+                    <video id="videoElement" autoplay muted></video>
+                    <canvas id="canvasElement" style="display: none;"></canvas>
+                    <div class="video-overlay">
+                        <div class="status-indicator" id="statusIndicator">
+                            <i class="fas fa-check-circle"></i>
+                            <span>System Ready</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="controls">
+                    <button id="startBtn" class="btn btn-primary">
+                        <i class="fas fa-play"></i>
+                        Start Detection
+                    </button>
+                    <button id="stopBtn" class="btn btn-secondary" disabled>
+                        <i class="fas fa-stop"></i>
+                        Stop Detection
+                    </button>
+                    <button id="settingsBtn" class="btn btn-outline">
+                        <i class="fas fa-cog"></i>
+                        Settings
+                    </button>
+                </div>
+            </div>
+
+            <div class="metrics-section">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <i class="fas fa-eye"></i>
+                        <h3>Eye Status</h3>
+                    </div>
+                    <div class="metric-value" id="eyeStatus">Normal</div>
+                    <div class="metric-detail">EAR: <span id="earValue">0.00</span></div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <i class="fas fa-mouth"></i>
+                        <h3>Yawn Status</h3>
+                    </div>
+                    <div class="metric-value" id="yawnStatus">Normal</div>
+                    <div class="metric-detail">Distance: <span id="yawnValue">0.00</span></div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <i class="fas fa-clock"></i>
+                        <h3>Session Time</h3>
+                    </div>
+                    <div class="metric-value" id="sessionTime">00:00</div>
+                    <div class="metric-detail">Active monitoring</div>
+                </div>
+            </div>
+
+            <div class="alerts-section">
+                <h3><i class="fas fa-exclamation-triangle"></i> Alerts</h3>
+                <div class="alerts-container" id="alertsContainer">
+                    <div class="alert-item info">
+                        <i class="fas fa-info-circle"></i>
+                        <span>System initialized. Click "Start Detection" to begin monitoring.</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div class="settings-modal" id="settingsModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-cog"></i> Settings</h3>
+                    <button class="close-btn" id="closeSettings">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="setting-group">
+                        <label>Eye Aspect Ratio Threshold</label>
+                        <input type="range" id="earThreshold" min="0.1" max="0.5" step="0.01" value="0.3">
+                        <span id="earThresholdValue">0.30</span>
+                    </div>
+                    <div class="setting-group">
+                        <label>Yawn Distance Threshold</label>
+                        <input type="range" id="yawnThreshold" min="10" max="50" step="1" value="20">
+                        <span id="yawnThresholdValue">20</span>
+                    </div>
+                    <div class="setting-group">
+                        <label>Alert Sound</label>
+                        <select id="alertSound">
+                            <option value="alert.wav">Default Alert</option>
+                            <option value="beep.wav">Beep Sound</option>
+                            <option value="warning.wav">Warning Sound</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="saveSettings">Save Settings</button>
+                    <button class="btn btn-secondary" id="resetSettings">Reset to Default</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
